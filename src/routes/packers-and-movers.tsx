@@ -33,9 +33,9 @@ const HOME_SIZES = [
 ];
 
 function PackersPage() {
-  const [size, setSize] = useState(HOME_SIZES[1].id);
-  const [from, setFrom] = useState(CITIES[0]);
-  const [to, setTo] = useState(CITIES[0]);
+  const [size, setSize] = useState(HOME_SIZES[1]!.id);
+  const [from, setFrom] = useState(CITIES[0]!);
+  const [to, setTo] = useState(CITIES[0]!);
   const [phone, setPhone] = useState("");
 
   const selected = HOME_SIZES.find((h) => h.id === size)!;

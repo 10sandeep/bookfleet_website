@@ -12,10 +12,10 @@ import {
 } from "@/lib/porter-data";
 
 export function BookingWidget() {
-  const [city, setCity] = useState(CITIES[0]);
+  const [city, setCity] = useState(CITIES[0]!);
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
-  const [vehicleId, setVehicleId] = useState(VEHICLES[2].id);
+  const [vehicleId, setVehicleId] = useState(VEHICLES[2]!.id);
   const [placed, setPlaced] = useState<Booking | null>(null);
 
   const ready = pickup.trim().length > 2 && drop.trim().length > 2;
