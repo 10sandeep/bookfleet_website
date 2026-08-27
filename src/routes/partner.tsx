@@ -37,7 +37,7 @@ function PartnerPage() {
       <SiteHeader overlay />
       <main>
         {/* ── Hero — full-screen with drive.png behind navbar ── */}
-        <section className="relative overflow-hidden rounded-b-3xl text-ink-foreground" style={{ minHeight: "620px" }}>
+        <section className="relative overflow-hidden rounded-b-3xl text-ink-foreground">
           {/* Background image */}
           <img
             src="/assets/drive.png"
@@ -80,7 +80,7 @@ function PartnerPage() {
           </svg>
 
           {/* Main content */}
-          <div className="container-page relative grid items-center gap-10 pb-12 pt-32 lg:grid-cols-[1fr_460px]">
+          <div className="container-page relative grid items-center gap-8 pb-12 pt-28 lg:grid-cols-[1fr_460px]">
             {/* Left — text */}
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">

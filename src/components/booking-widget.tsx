@@ -131,7 +131,7 @@ export function BookingWidget() {
   return (
     <div className="rounded-2xl bg-card p-6 shadow-[0_8px_48px_-12px_rgba(0,0,0,0.22)]">
       {/* Category cards with vehicle illustrations */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}

@@ -58,7 +58,7 @@ function ServicesPage() {
       <main>
         {/* ── Hero ── */}
         <section className="relative overflow-hidden rounded-b-3xl bg-ink text-ink-foreground" style={{ minHeight: "560px" }}>
-          <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+          <div className="container-page grid items-center gap-10 lg:grid-cols-[1fr_50%]">
             {/* Left */}
             <div className="pb-12 pt-28">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">

@@ -86,7 +86,7 @@ function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/65 to-ink/45" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
 
-          <div className="container-page relative grid min-h-screen items-center gap-10 pt-36 pb-16 lg:grid-cols-[1fr_440px] lg:gap-16">
+          <div className="container-page relative grid min-h-screen items-center gap-8 pt-28 pb-10 lg:grid-cols-[1fr_440px] lg:gap-16 lg:pt-36 lg:pb-16">
             {/* Left — hero text */}
             <div className="self-center">
               <div className="flex flex-wrap items-center gap-3">

@@ -96,14 +96,14 @@ export function SiteHeader({ overlay = false }: SiteHeaderProps) {
 
           {/* Mobile nav */}
           {open && (
-            <nav className="mt-1 flex flex-col gap-0.5 rounded-2xl border border-white/30 bg-white/85 px-3 py-3 shadow-[0_2px_24px_-6px_rgba(0,0,0,0.12)] backdrop-blur-md md:hidden">
+            <nav className="ml-auto mt-1 flex w-56 flex-col gap-0.5 rounded-2xl border border-white/20 bg-white/50 px-3 py-3 shadow-[0_2px_24px_-6px_rgba(0,0,0,0.18)] backdrop-blur-xl md:hidden">
               {links.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  activeProps={{ className: "!bg-accent !text-accent-foreground !font-semibold" }}
+                  className="rounded-lg px-3 py-2.5 text-sm font-bold text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
+                  activeProps={{ className: "!bg-accent !text-accent-foreground" }}
                 >
                   {l.label}
                 </Link>

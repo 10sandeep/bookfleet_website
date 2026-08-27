@@ -53,7 +53,7 @@ function ContactPage() {
         </section>
 
         {/* ── Get in touch + Form ── */}
-        <section className="container-page grid gap-12 py-16 md:grid-cols-[1fr_560px]">
+        <section className="container-page grid gap-12 py-16 lg:grid-cols-[1fr_520px]">
           {/* Left — contact info */}
           <div>
             <h2 className="text-2xl font-extrabold">Get in touch</h2>

@@ -167,12 +167,12 @@ function TrackPage() {
                           </div>
                           {/* Label */}
                           <p
-                            className={`mt-2 text-center text-xs font-semibold ${active ? "text-foreground" : "text-muted-foreground"}`}
+                            className={`mt-2 text-center text-[11px] font-semibold sm:text-xs ${active ? "text-foreground" : "text-muted-foreground"}`}
                           >
                             {stage.key}
                           </p>
                           {i === stageIndex && (
-                            <p className="mt-0.5 text-center text-[11px] font-medium text-brand">
+                            <p className="mt-0.5 hidden text-center text-[11px] font-medium text-brand sm:block">
                               {dateStr}, {timeStr}
                             </p>
                           )}
