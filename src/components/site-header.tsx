@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Package, X } from "lucide-react";
+import { ArrowRight, Menu, Truck, X } from "lucide-react";
 import { useState } from "react";
 
 const links = [
@@ -10,64 +10,118 @@ const links = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  /** When true the header is absolutely positioned so it overlays the hero below it */
+  overlay?: boolean;
+}
+
+export function SiteHeader({ overlay = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
+  const [announcementDismissed, setAnnouncementDismissed] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-9 place-items-center rounded-lg bg-brand">
-            <Package className="size-5 text-ink" />
-          </span>
-          <span className="font-display text-xl font-extrabold tracking-tight">Porter</span>
-        </Link>
-
-        <nav className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
+    <div className={overlay ? "fixed top-0 left-0 right-0 z-50 w-full" : "sticky top-0 z-50"}>
+      {/* Announcement bar */}
+      {!announcementDismissed && (
+        <div className="relative border-b border-border bg-background py-2 text-center text-xs">
+          <span className="font-medium text-foreground/70">
+            <span className="font-bold text-brand">New:</span> Bookfleet now live Pan India —{" "}
             <Link
-              key={l.to}
-              to={l.to}
-              className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              to="/services"
+              className="font-bold text-brand underline-offset-2 hover:underline"
             >
-              {l.label}
+              Explore →
             </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link
-            to="/"
-            hash="book"
-            className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-ink-foreground transition-opacity hover:opacity-90 sm:inline-flex"
-          >
-            Book a vehicle
-          </Link>
+          </span>
           <button
-            className="grid size-10 place-items-center rounded-lg border border-border md:hidden"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+            onClick={() => setAnnouncementDismissed(true)}
+            aria-label="Dismiss"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-foreground/35 transition-colors hover:text-foreground/60"
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            <X className="size-3.5" />
           </button>
         </div>
-      </div>
-
-      {open && (
-        <nav className="container-page flex flex-col gap-1 border-t border-border py-3 md:hidden">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-2 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-muted hover:text-foreground"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
       )}
-    </header>
+
+      {/* Floating pill navbar */}
+      <div className="px-4 py-3">
+        <div className="mx-auto max-w-[80rem]">
+          <header className="flex items-center justify-between gap-6 rounded-2xl border border-white/30 bg-white/75 px-6 py-3 shadow-[0_2px_24px_-6px_rgba(0,0,0,0.12)] backdrop-blur-md">
+            {/* Logo */}
+            <Link to="/" className="flex shrink-0 items-center gap-2.5">
+              <span className="grid size-9 place-items-center rounded-xl bg-brand shadow-sm shadow-brand/30">
+                <Truck className="size-5 text-white" />
+              </span>
+              <span className="font-display text-[1.1rem] font-extrabold tracking-tight">
+                Bookfleet
+              </span>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden flex-1 items-center justify-center gap-7 md:flex">
+              {links.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="text-sm font-semibold text-foreground/80 transition-colors hover:text-foreground"
+                  activeProps={{ className: "!text-foreground" }}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* CTA + mobile toggle */}
+            <div className="flex shrink-0 items-center gap-2">
+              <Link
+                to="/"
+                hash="book"
+                className="hidden items-center gap-2 rounded-full bg-brand py-2 pl-5 pr-2 text-sm font-bold text-white transition-opacity hover:opacity-90 sm:flex"
+              >
+                Book now
+                <span className="grid size-7 place-items-center rounded-full bg-white">
+                  <ArrowRight className="size-3.5 text-brand" />
+                </span>
+              </Link>
+
+              <button
+                className="grid size-9 place-items-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
+                onClick={() => setOpen((v) => !v)}
+                aria-label="Toggle menu"
+              >
+                {open ? <X className="size-4" /> : <Menu className="size-4" />}
+              </button>
+            </div>
+          </header>
+
+          {/* Mobile nav */}
+          {open && (
+            <nav className="mt-1 flex flex-col gap-0.5 rounded-2xl border border-white/30 bg-white/85 px-3 py-3 shadow-[0_2px_24px_-6px_rgba(0,0,0,0.12)] backdrop-blur-md md:hidden">
+              {links.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  activeProps={{ className: "!bg-accent !text-accent-foreground !font-semibold" }}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <div className="mt-1 border-t border-border pt-2">
+                <Link
+                  to="/"
+                  hash="book"
+                  onClick={() => setOpen(false)}
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-brand py-2.5 text-sm font-bold text-white"
+                >
+                  Book now <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </nav>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

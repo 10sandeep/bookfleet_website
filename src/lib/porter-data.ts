@@ -10,8 +10,17 @@ export type Vehicle = {
 
 export const VEHICLES: Vehicle[] = [
   {
+    id: "scooty",
+    name: "Scooty",
+    capacity: "10 kg",
+    size: "30 x 30 x 30 cm",
+    baseFare: 25,
+    perKm: 7,
+    minKm: 2,
+  },
+  {
     id: "2wheeler",
-    name: "2 Wheeler",
+    name: "Bike",
     capacity: "20 kg",
     size: "40 x 40 x 40 cm",
     baseFare: 30,

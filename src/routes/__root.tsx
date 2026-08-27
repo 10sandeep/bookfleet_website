@@ -78,12 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Porter — Intra-city Logistics & Truck Booking" },
+      { title: "Bookfleet — Intra-city Logistics & Truck Booking" },
       {
         name: "description",
         content: "Book delivery vehicles, mini trucks and packers & movers across India.",
       },
-      { property: "og:title", content: "Porter — Intra-city Logistics & Truck Booking" },
+      { property: "og:title", content: "Bookfleet — Intra-city Logistics & Truck Booking" },
       {
         property: "og:description",
         content: "Book delivery vehicles, mini trucks and packers & movers across India.",
@@ -112,11 +112,107 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const STRUCTURED_DATA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://bookfleet.in/#organization",
+    name: "Bookfleet",
+    url: "https://bookfleet.in",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://bookfleet.in/favicon.ico",
+    },
+    description:
+      "India's intra-city logistics marketplace. Book two wheelers, tempos, mini trucks and packers & movers in minutes. Transparent fares, verified drivers, live GPS tracking.",
+    foundingDate: "2018",
+    areaServed: "IN",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+91-1800-000-0000",
+      contactType: "customer service",
+      availableLanguage: ["English", "Hindi"],
+      contactOption: "TollFree",
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Koramangala",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      postalCode: "560034",
+      addressCountry: "IN",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://bookfleet.in/#website",
+    name: "Bookfleet",
+    url: "https://bookfleet.in",
+    publisher: { "@id": "https://bookfleet.in/#organization" },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://bookfleet.in/track?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Bookfleet site navigation",
+    itemListElement: [
+      { "@type": "SiteLinksSearchBox", url: "https://bookfleet.in" },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Delivery Services",
+        url: "https://bookfleet.in/services",
+        description: "Book two wheelers, trucks and tempos for intra-city deliveries.",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Packers & Movers",
+        url: "https://bookfleet.in/packers-and-movers",
+        description: "Professional house shifting with trained crews and a fixed upfront quote.",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Track Your Order",
+        url: "https://bookfleet.in/track",
+        description: "Live status for every Bookfleet trip, from pickup to drop.",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Drive with Us",
+        url: "https://bookfleet.in/partner",
+        description: "Attach your vehicle and earn up to ₹45,000 a month with Bookfleet.",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Contact Support",
+        url: "https://bookfleet.in/contact",
+        description: "Reach Bookfleet support for delivery queries and business enquiries.",
+      },
+    ],
+  },
+];
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
+        />
       </head>
       <body>
         {children}
